@@ -70,5 +70,5 @@ JavaScript에서는 이런 DOM 중에서도 HTML DOM을 사용하며, document �
 대표적으로 가장 많이 쓰이는 라이브러리로는 [jQuery](http://jquery.com/), [prototype](http://prototypejs.org/), [YUI](http://yuilibrary.com/)가 존재한다.
 
 ---
-|[prev](./00-contents.ko_KR.md)|[content](./00-contents.ko_KR.md)|[next](./02-sentence.ko_KR.md)|
+|[prev](./00-contents.ko-KR.md)|[content](./00-contents.ko-KR.md)|[next](./02-sentence.ko-KR.md)|
 |:--:|:--:|:--:|

@@ -156,5 +156,5 @@ const B = 2;
 > 변수 범위를 예측해 최상단에 변수 선언을 미리 해두는건 나쁜 습관은 아니라고 생각한다.
 
 ---
-|[prev](./02-sentence.ko_KR.md)|[content](./00-contents.ko_KR.md)|[next](./04-datastructure.ko_KR.md)|
+|[prev](./02-sentence.ko-KR.md)|[content](./00-contents.ko-KR.md)|[next](./04-datastructure.ko-KR.md)|
 |:--:|:--:|:--:|

@@ -48,5 +48,5 @@ HTML은 JavaScript 파일 로딩을 기본적으로 선언한 순서대로 실�
 ```
 
 ---
-|[prev](./01-intro.ko_KR.md)|[content](./00-contents.ko_KR.md)|[next](./03-variable.ko_KR.md)|
+|[prev](./01-intro.ko-KR.md)|[content](./00-contents.ko-KR.md)|[next](./03-variable.ko-KR.md)|
 |:--:|:--:|:--:|
