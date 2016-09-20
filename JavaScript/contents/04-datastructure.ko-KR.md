@@ -261,20 +261,50 @@ console.log(Object.keys(obj));			// 'a'
 심볼에 대한 좀 더 자세한 설명은 [여기서](http://hacks.mozilla.or.kr/2015/09/es6-in-depth-symbols/ 'Mozlia Hack Blog') 참조하길 바란다.
 
 ## 래퍼 객체 (Wrapper Object) 
-원시형 데이터 타입과 래퍼(Wrapper) 객체는 대부분 한 쌍을 이루어져 존재한다.    
-그래서 JavaScript 뿐만 아니라, 대부분의 다른 프로그래밍 언어에서도  
-원시형 데이터 타입과 래퍼 객체를 구분하기 위해서  
-원시형 데이터 타입의 시작은 소문자로(boolean, number, string...)  
-래퍼 객체의 시작은 대문자로(Boolean, Number, String...)  
-구분하여 작성한다.
+JavaScript에 존재하는 원시형 데이터 타입인 boolean, number, string 타입들은  
+각각 래퍼 객체(Wrapper Object) 라는 객체들과 한 쌍을 이루어 존재한다.  
+JavaScript 뿐만 아니라, 다른 프로그래밍 언어에서도 이와 같은 래퍼 객체가 존재하는 걸 많이 볼 수 있을 것이다.
 
-이러한 원시형 데이터 타입과 래퍼 객체는 당연히 서로 다른 유형이라는걸 기억해야한다.  
+그러나 JavaScript의 래퍼 객체는 조금 다르다.  
+JavaScript에서 래퍼 객체의 데이터 타입은 'object' 이다.  
+그렇기 때문에 JavaScript의 특징 중 하나인 '프로토 타입(prototype)'을 커스터마이징 할 수 있다. (추후 설명)  
+그럼 래퍼 객체에 사용자가 정의한 프로토 타입 메서드들을 사용할 수 있게 된다.
+
+JavaScript는 여기서 끝이 아니다.  
+JavaScript의 원시형 데이터 타입은 해당 래퍼 객체의 모든 메소드들을 사용할 수 있다.  
+때문에 사용자가 정의한 프로토 타입도 얼마든지 원시형 데이터 타입에서 사용이 가능하다.
+
+```js
+Number.prototype.haha = function() {
+	console.log('Number haha');
+}
+
+var num = 12345;
+console.log(typeof num);		// number
+num.haha();						// Number haha
+```
+
+이러한 방식이 가능한 이유는 JavaScript에서 원시형 데이터 타입의 변수에서 특정 메소드를 호출하면  
+순간적으로 임시 래퍼 객체에 매핑을 실시하고 해당 메소드를 호출한다.  
+그리고 메소드 호출이 끝나면 생성된 임시 객체는 자동으로 가비지로 변환된다.  
+이러한 특징 때문에 원시형 데이터 타입에서 모든 래퍼 객체의 메소드를 사용할 수 있는 것이다.
+
+하지만 주의할 점은 이러한 래퍼 객체와 원시형 데이터 타입은 엄연히 서로 다른 유형이라는걸 기억해야한다.
+```js
+var a = new Boolean(true);
+var b = true;
+
+console.log( typeof a );		// object
+console.log( typeof b );		// boolean
+console.log( a === b );			// false
+```  
 
 
 ## 내장 객체 (Built in object)
 ECMAScript 명세에는 기본으로 내장되어있는 객체들이 존재한다.  
 위에서 언급한 래퍼 객체도 내장 객체에 일부라고 생각하면 된다.  
-또한 대표적으로는 Array, Date 등...이 있다.
+뿐만아니라, 대표적인 내장 객체는 Array, Date 등이 있으며,  
+ES6에서는 더 많은 내장 객체들이 추가 되었다.
 
 ---
 |[prev](./03-variable.ko-KR.md)|[content](./00-contents.ko-KR.md)|next|
