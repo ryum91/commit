@@ -22,7 +22,7 @@ JavaScript는 이처럼 다른 프로그래밍 언어들에 비해 정의된 데
 
 <br>
 ## 리터럴 (Literal)
-각각의 데이터 타입에는 리터럴(Literal)이 존재하며,  
+각각의 데이터 타입에는 [리터럴(Literal)](https://ko.wikipedia.org/wiki/%EB%A6%AC%ED%84%B0%EB%9F%B4)이 존재하며,  
 몇몇 객체에서는 해당 객체에서만 사용되는 특수 리터럴이 존재한다.
 
 ### boolean
@@ -66,12 +66,12 @@ var str1 = 'abcdefg';
 var str2 = "가나다라마바사";
 ```
 
-추가로 ES6에는 string 리터럴이 한 가지 더 추가가 되었다.  
-바로 빽쿼터(Back Quote)라고 불리는 ` 를 이용해 리터럴을 정의할 수 있다.  
+<img src="../image/es6.png" height="11" title="ECMAScript6"> **추가로 ES6에는 string 리터럴이 한 가지 더 추가가 되었다.**  
+바로 [빽쿼터(Back Quote)](https://en.wikipedia.org/wiki/Grave_accent)라고 불리는 ` 를 이용해 리터럴을 정의할 수 있다.  
 이러한 빽쿼터를 이용한 리터럴 정의를 템플릿(template) 리터럴이라 부른다.
 
-템플릿 리터럴은 여러 줄 문자열을 이스케이프를 사용하지 않고 정의할 수 있으며,  
-문자열 사이에 문자열을 삽입하는 리터럴도 가능하다.
+템플릿 리터럴은 여러 줄 문자열을 [이스케이프](https://en.wikipedia.org/wiki/Escape_character)를 사용하지 않고 정의할 수 있으며,  
+문자열 사이에 다른 문자열을 삽입하는 리터럴도 가능하다.
 ```js
 // 여러 줄 문자열 표현
 var multiString = `Im JavaScript
@@ -92,7 +92,7 @@ undefined는 변수를 선언만 하고, 값을 할당하지 않은 상태를 �
 null 값을 변수에 할당하였다면, 해당 변수는 **비어있는 값**이라고 강제로 명시해놓은 것이다.  
 이러한 null 값과, undefined의 차이점으로는  
 undefined는 데이터 타입 자체가 아무것도 없다는 의미라고 생각하면 되고,  
-null은 이론적으로 Empty Object를 가리킨다고 생각하면 된다.  
+null은 빈 객체(Empty Object)라고 생각하면 된다.  
 따라서 null값을 가진 변수를 typeof 연산자로 확인해보면 'object' 라는 결과가 나온다.
 ```js
 var a = null;
@@ -101,7 +101,7 @@ console.log(typeof a);		// object
 
 ### object
 JavaScript의 모든 객체(object)는 중괄호({})로 묶인 키(key)와 값(value)의 쌍으로 이루어져있다.  
-흔히 알고있는 JSON 형식이라 생각하면 된다.  
+흔히 알고있는 [JSON](https://ko.wikipedia.org/wiki/JSON) 형식이라 생각하면 된다.  
 이러한 객체의 속성값에는 문자열, 중첩된 또다른 객체, 함수까지 모든 값을 객체의 속성값으로 지정할 수 있다.
 ```js
 var phone = {
@@ -110,9 +110,9 @@ var phone = {
 }
 ```
 
-객체의 속성명(key)으로는 빈 문자열을 포함하여 JavaScript에 예약어로 지정되어있는 문자까지  
+객체의 속성명(key)으로는 빈 문자열을 포함하여 [JavaScript의 예약어](http://www.w3schools.com/js/js_reserved.asp)로 지정되어있는 문자까지  
 모든 문자열을 전부 다 속성명으로 지정할 수 있다.  
-그러나 속성명 자체가 JavaScript의 유효한 식별자가 아니면 속성 선언시  
+그러나 속성명 자체가 유효한 식별자가 아니면 속성 선언시  
 string 선언처럼 작은 따옴표(')나, 큰 따옴표(")로 묶어주어야 한다.  
 
 이러한 객체의 속성명을 객체를 통해 접근하는 방법은 **두 가지**가 있다.  
@@ -143,7 +143,7 @@ obj['3'] = 'c';
 console.log(obj);					// {'default':0, '1':'a', '2':'b', '3':'c'}
 ```
 
-**추가로 ES6에는 새롭게 추가된 문법들이 존재한다.**
+<img src="../image/es6.png" height="11" title="ECMAScript6"> **추가로 ES6에는 새롭게 추가된 문법들이 존재한다.**
   
 첫번째로는 객체 내부에서 프로토 타입을 설정할 수 있다.  
 프로토 타입에 대해서는 뒤에 자세히 설명하겠다.  
