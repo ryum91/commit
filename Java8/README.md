@@ -7,8 +7,8 @@ Java8이 처음 릴리즈가 된 지 어느덧 2년이 넘었고,
 추가된 문법에 대해 소개한다.  
 
 ## Contents
-1. Intro
-2. Interface in java8
+1. [Intro](./contents/01-intro.ko-KR.md)
+2. [Interface in java8](./contents/02-interface.ko-KR.md)
 3. Free Variable
 4. Lambda Expression
 5. Functional Interface
