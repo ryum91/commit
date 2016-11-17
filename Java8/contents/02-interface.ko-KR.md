@@ -85,10 +85,12 @@ public class ChildClass implements InterfaceTest, InterfaceTest2 {
 }
 ```
 
-마지막으로 억지스러운 상황이긴 하나, Interface의 선언에 따라  
+마지막으로 억지스러운 상황이긴 하나, 인터페이스의 선언에 따라  
 하위 클래스에서 Override도 안되고, Overloading도 안되는 경우가 있을 수 있다.  
-Default 메소드명이 동일하나, 반환 타입이 다른 경우이다.  
-그런 경우 Java8 에서의 선택은 Compile Error를 내뱉는다.
+구현한 인터페이스가 여러개 있으며, 각각의 인터페이스에 존재하는 Default 메소드가  
+메소드명이 동일하나, 반환 타입이 다른 경우이다.  
+그런 경우 Java 문법상 올바르지 않는 문법이기 때문에  
+Java8 에서 그럴경우 해당 인터페이스를 implements 하려고 할 때 Compile Error를 내뱉는다.
 ```java
 public interface InterfaceTest3 {
 	// 해당 인터페이스는 기존에 만든 ChildClass 에서 implements 를 할 수 없다.
