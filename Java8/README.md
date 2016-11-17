@@ -9,7 +9,7 @@ Java8이 처음 릴리즈가 된 지 어느덧 2년이 넘었고,
 ## Contents
 1. [Intro](./contents/01-intro.ko-KR.md)
 2. [Interface in java8](./contents/02-interface.ko-KR.md)
-3. Free Variable
+3. [Free Variable](./contents/03-freevariable.ko-KR.md)
 4. Lambda Expression
 5. Functional Interface
 6. Method Reference
