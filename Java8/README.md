@@ -9,12 +9,15 @@ Java8이 처음 릴리즈가 된 지 어느덧 2년이 넘었고,
 ## Contents
 1. [Intro](./contents/01-intro.ko-KR.md)
 2. [Interface in java8](./contents/02-interface.ko-KR.md)
-3. [Free Variable](./contents/03-freevariable.ko-KR.md)
-4. [Functional Interface](./contents/04-functionalinterface.ko-KR.md)
-5. Lambda Expression
-6. Method Reference
-7. Stream API
+3. [Free Variable](./contents/03-free-variable.ko-KR.md)
+4. [Functional Programing](./contents/04-functional-programming.ko-KR.md)
+5. [Functional Interface](./contents/05-functional-interface.ko-KR.md)
+6. Lambda Expression
+7. Method Reference
+8. Stream API
 
 ## Reference
-* [ttux.net - Java8](http://ttux.net/)
+* [Medium - Jooyung Han](https://medium.com/@jooyunghan)
+* [Medium - Lazysoul](https://medium.com/@lazysoul)
 * [SlideShare - Beom Kyun Choi](http://www.slideshare.net/madvirus?utm_campaign=profiletracking&utm_medium=sssite&utm_source=ssslideview)
+* [ttux.net - Java8](http://ttux.net/)

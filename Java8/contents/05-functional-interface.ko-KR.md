@@ -13,7 +13,6 @@ API에 따르면 FunctionalInterface는 하나의 추상 메소드를 가질 수
 public interface FunctionalInterfaceTest {
 
 	void abstractMethod();
-
 }
 ```
 [[Chapter2.Interface]](./02-interface.ko-KR.md)에서 소개한 default 메소드와 static 메소드는 별개로 얼마든지 선언해도 상관없다.
