@@ -1,8 +1,8 @@
-package chap04;
+package chap05;
 
 @FunctionalInterface
 public interface FuncationalInterfaceTest {
 
-	void abstractMethod();
+	void call();
 	
 }

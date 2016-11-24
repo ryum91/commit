@@ -4,18 +4,42 @@
 Functional Interface라고 새로운 Interface가 추가된 것은 아니다.  
 새롭게 추가된 것은 @FunctionalInterface 라는 [Annotation](https://en.wikipedia.org/wiki/Java_annotation)이 java.lang 패키지에 추가되었다. [(API)](https://docs.oracle.com/javase/8/docs/api/java/lang/FunctionalInterface.html)  
 API에 따르면 FunctionalInterface는 하나의 추상 메소드를 가질 수 있다고 나와있다.
->Conceptually, a functional interface has exactly one abstract method
+>Conceptually, a functional interface has exactly one abstract method  
+> functional interface는 정확히 단 하나의 추상 메소드를 가질 수 있다.
 
 즉, @FunctionalInterface Annotation을 붙일 수 있는 인터페이스는 구현해야 할 추상 메소드가 하나 일 때 붙일 수 있다.  
-만약 추상 메소드가 아예 없거나, 두 개 이상이면 FunctionalInterface Annotation을 붙일 수 없다.
+만약 추상 메소드가 아예 없거나, 두 개 이상이면 FunctionalInterface Annotation을 붙일 수 없다.  
+단, default 메소드와 static 메소드는 별개로 얼마든지 선언해도 상관없다.
 ```java
 @FunctionalInterface
 public interface FunctionalInterfaceTest {
 
-	void abstractMethod();
+	void call();
 }
 ```
-[[Chapter2.Interface]](./02-interface.ko-KR.md)에서 소개한 default 메소드와 static 메소드는 별개로 얼마든지 선언해도 상관없다.
+그렇다면 이 Functional Interface는 무슨 용도로 추가된 것일까?  
+그 이유는 앞서말한 Functional Programming을 지원하기 위해 추가된 것이다.  
+알다시피 기존 Java에서는 '함수' 라는 개념이 없었다.  
+그러나 Functional Programming을 지원하기 위해선 '함수'라는 개념이 존재해야만 했고,  
+이것을 Functional Interface 라는 특수한 인터페이스 방식을 만들어, 해당 인터페이스를 구현한 객체로 대체한 것이다.  
+```java
+public class FunctionalProgramming {
+
+	public static void main(String[] args) {
+		
+		// FuncationalInterfaceTest 인터페이스를 이용하여 function 이라는 객체를 만들었다.
+		// 해당 객체는 이제 '함수'로써 역할을 맡게된다.
+		FuncationalInterfaceTest function = new FuncationalInterfaceTest() {
+			@Override
+			public void call() {
+				System.out.println("function call");
+			}
+		};
+		
+		function.call();		// function call
+	}
+}
+```
 
 ## 기존의 인터페이스
 Java8 이전에도 인터페이스인데 구현해야 할 추상 메소드가 하나인 인터페이스가 여럿 있었다.  
