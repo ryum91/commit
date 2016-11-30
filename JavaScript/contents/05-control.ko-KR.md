@@ -1,5 +1,10 @@
 # 제어문
 
+제어문에는 가장 단순한 Block문과,  
+조건에 따라 수행하는 if문, switch문이 존재한다.  
+또한 에러나 오류를 제어할 수 있는 try-catch문과,  
+마지막으로 ES6에 등장한 비동기식 동작을 제어하는 Promise가 존재한다.
+
 ## Block문
 Block문은 코드를 묶는 가장 기본적인 문법이다.  
 일반적으로 조건문이나, 반복문과 함께 사용되며, 중괄호( {...} )를 사용한다.
@@ -13,6 +18,10 @@ Block문은 코드를 묶는 가장 기본적인 문법이다.
 	statement_n;
 }
 ```
+
+Block문이 '제어문' 이라고 불릴 수 있게 된 것은 ES6부터 라고 할 수 있다.  
+그 이유는 [변수](./03-variable.ko-KR.md)에서 말했다싶이  
+기존에 변수를 선언하는 유일한 방법인 'var' 키워드에는 Block 단위 Scope가 존재하지 않았기 때문이다.
 
 ## if문
 특정 조건이 참인 경우 문장을 실행할때 if문을 사용한다.  
@@ -70,9 +79,35 @@ switch (expression) {
 
 또한 switch문은 switch문 자체가 Block으로 감싸져 있다는 것을 인지하고 있어야한다.  
 그 이유는 case문 각각 Block이 존재하는것이 아니기 때문에  
-case문 내에서 수행되는 변수의 scope를 제대로 알고 사용해야 한다.
+case문 내에서 수행되는 변수의 Scope를 제대로 알고 사용해야 한다.
 
+## 예외 처리문
+예외 처리문에는 예외를 던지는 **throw**문과,  
+던진 예외를 잡는 **try-catch-finally**문이 존재한다.
 
-## 예외처리문
+### throw
+JavaScript에서 throw는 해당 구문을 수행한 곳에게  
+정상적인 반환이 아닌, 예외적으로 다른 반환을 할 때 사용한다.  
+따라서 throw로 반환될 수 있는 것은 return 타입이 꼭 정해져 있지 않는 것처럼  
+아무런 값을 throw로 반환할 수 있다.
+
+```js
+throw 0;
+throw 'String';
+throw true;
+throw {key: 'value'};
+throw new Error();
+```
+
+그러나 throw가 가장 많이 사용되는 곳은 단연 에러나, 오류에 대한 처리 부분이다.  
+ECMAScript 내부에서도 에러가 발생되면 해당 부분에서 [Error](./builtInObjects/error.ko-KR.md) 객체를 생성해 throw하게 된다.
+
+> 이처럼 throw는 에러나, 오류에 대한 처리로 사용하는 것이 제일 바람직하다.  
+> 그 이유는 throw를 단순히 값을 반환하는 용도로 return문 처럼 사용하게 되면  
+> 해당 함수에 대한 결과가 혼동될 뿐만 아니라, 유지보수 측면에서도 아주 안좋기 때문이다.  
+> 때문에 아무리 ECMAScript에서 throw의 반환 타입이 자유롭다고 해서 실질적인 return문 처럼 사용하는 것은  
+> 아주 안좋은 Anti Pattern 으로 지양하는 것이 좋다.
+
+### try-catch-finally
 
 ## Promise
