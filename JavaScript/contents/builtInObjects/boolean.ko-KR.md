@@ -5,13 +5,12 @@ Boolean 객체는 원시형 boolean 값을 감싸고 있는 래퍼(Wrapper) 객�
 ```js
 new Boolean([value]);
 ```
-
-매개 변수에 들어가는 value 값은 Boolean 객체의 초기값으로,  
-실제 매개 변수에 들어가는 값이 원시형 boolean 으로 변환하여 매핑된다.
-
-다시말해, 매개 변수가 값이 없거나, 0, -0, null, false, NaN, undefined, 빈 문자열("") 일때는 'false' 로,  
-그 외에 다른 값이면 'true' 로 초기화 된다.  
-'false' 로 인식되는 값을 if문 조건에 넣게되면 거짓(false)으로 판단되는 것과 같은 것이라 생각하면 된다.
+### 매개 변수
+#### value
+Boolean 객체의 초기값으로, value 값이 원시형 boolean 으로 변환하여 매핑된다.  
+value 값이 boolean으로 판단되는 기준은  
+값이 없거나, 0, -0, null, false, NaN, undefined, 빈 문자열("") 일때는 'false' 로,  
+그 외에 다른 값이면 'true' 로 판단된다.
 
 ## 설명
 이러한 Boolean 객체를 원시형 타입인 boolean과 혼동하면 안된다.  
@@ -34,7 +33,6 @@ if( a ) {								// a는 object이기 때문에 true로 판단된다.
 }
 ```
 
-<br>
 만약에 어떤 구문에 대한 결과를 원시형 boolean으로 변환해야한다면 Boolean의 객체를 사용하면 안된다.  
 대신에 기본으로 제공하는 전역함수인 Boolean()을 사용하면 원시형 boolean으로 변환할 수 있다.
 ```js
