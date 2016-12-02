@@ -108,6 +108,90 @@ ECMAScript 내부에서도 에러가 발생되면 해당 부분에서 [Error](./
 > 때문에 아무리 ECMAScript에서 throw의 반환 타입이 자유롭다고 해서 실질적인 return문 처럼 사용하는 것은  
 > 아주 안좋은 Anti Pattern 으로 지양하는 것이 좋다.
 
-### try-catch-finally
+### try-catch
+try문은 예외가 발생될 수 있는 구문을 사용할 때, 해당 예외를 제어하고자 할 때 사용한다.  
+예외가 발생될 수 있는 구문은 try문 내에서 사용하고,  
+해당 예외를 제어하는 구문은 catch문 내에서 선언하면 되는 구조이다.  
+catch문 내에서는 던져진 객체가 매개 변수로 넘어온다.
+```js
+try {
+	// 예외가 발생될 수 있는 문장
+} catch (e) {
+	// 해당 예외를 제어하는 문장
+}
+```
+만약 예외가 발생되었는데 상단에 try-catch문이 존재하지 않으면  
+해당 예외는 실행 환경의 Method Stack에 따라 JavaScript Engine에게 까지 전달되어  
+에러 메세지 출력이나, 원치않는 동작을 수행할 수 있다.  
+때문에 개발을 하면서 예외가 던져질 가능성이 있는 문장에는 try-catch 문을 사용하는게 좋다.
+
+### finally
+try-catch문과 같이 사용될 수 있는 것이 바로 finally문 이다.  
+finally문은 try문 내에서 정상적으로 종료되거나, catch문으로 빠져서 예외를 처리하거나,  
+상관없이 마지막에 수행하는 구문이다.  
+다시 말해 try - finally 차례로 수행되거나, try - catch - finally 차례로 수행되는 것이다.
+```js
+try {
+	// 예외가 발생될 수 있는 문장
+} catch (e) {
+	// 해당 예외를 제어하는 문장
+} finally {
+	// 마지막에 수행되는 문장
+}
+```
+
+만약 이 finally문 내에서 return이 존재하면 해당 try-catch-finally의 반환은 무조건 finally에 선언된 반환이 된다.  
+예를들어 try문 내에도 return이 존재하고, finally문 내에도 return이 존재하면  
+try - finally 차례로 수행하기 때문에 finally문 내에있는 return이 최종적으로 반환되는 것이다.
 
 ## Promise
+JavaScript의 대부분 작업들은 비동기 작업으로 이루어진다.  
+비동기 작업이란 함수 선언을 나열하였을때, 위에 호출 된 함수가 종료되기도 전에 밑에 선언된 함수가 호출되는 것이다.
+```js
+function1();		// function1 함수를 호출한다.
+function2();		// function1 함수가 종료되기도 전에, function2 함수가 호출된다. 
+```
+
+이런 문제 때문에 어떤 함수의 결과를 가지고 다른 함수를 호출하는 경우  
+JavaScript에서는 이른바 CallBack(콜백) 이라는 방법을 사용해왔다.  
+CallBack이란 함수 호출시 매개 변수로 전달된 또다른 함수를 말하며,  
+해당 함수 내에서 작업이 끝나면 매개 변수로 전달된 함수를 실행하라는 의미이다.
+```js
+// function1 함수는 매개변수로 callBack이라는 변수를 전달받고
+// 작업이 끝나고 맨 마지막에 callBack 함수를 호출한다.
+function function1(callBack) {
+	// ...
+	callBack();
+};
+
+function1(function2);	// function1 함수에게 function2 라는 함수를 전달
+```
+
+이 방법의 단점은 잘못 사용하게 되면 흔히 말하는 '콜백 지옥' 이라는  
+유지 보수가 매우 안좋은 방식의 소스 코드로 변하게 되는 경우가 존재한다.
+```js
+func1(
+	func2(
+		func3(
+			func4()
+		)
+	)
+); 
+// func1이 종료되고 func2 수행, func2 종료되고, func3 수행 ....
+```
+
+이러한 콜백 지옥을 벗어나고자  
+JavaScript에는 Promise Pattern 이라는 소스 코딩 패턴이 존재하였었다.
+  
+Promise Pattern은 위에서 언급한 비동기 작업들을 순차적으로 진행하거나,  
+병렬로 진행하는 등의 컨트롤이 보다 수월해지고, 코드의 가독성이 높아지게 되는 장점을 가지고 있다.
+
+하지만 이 패턴을 사용하려면 jQuery나 Vow, Bluebird 등... 기타 라이브러리를 사용해야 가능하였다.
+
+그러자 이러한 Promise Pattern이 JavaScript 개발에 거의 필수적인 요소로 변하기 시작하여서  
+ECMAScript 6 에는 Promise Pattern 개발이 가능한 내장 객체를 추가하였다.
+
+따라서 Promise라는 새로운 문법이 생긴 것은 아니지만,  
+Promise 라는 내장 객체를 이용하여 기존의 콜백 지옥을 벗어날 수 있게 된 것이다.
+
+이 Promise 객체에 대해서는 [여기서](./builtInObjects/promise.ko-KR.md) 좀 더 자세하게 설명하겠다. 
