@@ -6,7 +6,7 @@ Boolean 객체는 원시형 boolean 값을 감싸고 있는 래퍼(Wrapper) 객�
 new Boolean([value]);
 ```
 ### 매개 변수
-#### value
+#### (All) value
 Boolean 객체의 초기값으로, value 값이 원시형 boolean 으로 변환하여 매핑된다.  
 value 값이 boolean으로 판단되는 기준은  
 값이 없거나, 0, -0, null, false, NaN, undefined, 빈 문자열("") 일때는 'false' 로,  
