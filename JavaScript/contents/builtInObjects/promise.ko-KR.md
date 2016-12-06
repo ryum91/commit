@@ -19,7 +19,7 @@ function executor(resolve, reject) {
 ```
 두 개의 매개변수는 resolve, reject로 둘 다 함수이다.  
 이는 executor 함수 내에서 연산이 성공하였을 때는 resolve를 호출,  
-연산이 실패하였을 때는 reject()를 호출하는 방식으로 사용한다.
+연산이 실패하였을 때는 reject를 호출하는 방식으로 사용한다.
 ```js
 new Promise(function(resolve, reject) {
 	var result = 연산의 수행 조건;
@@ -59,7 +59,7 @@ Promise 에서는 이러한 상태를 자유롭게 제어가 가능하며,
 매개 변수에는 Promise 객체의 배열이 들어가게 된다.  
 이 매개 변수에 전달된 Promise 객체들이 모두 성공이면 fulfilled 상태의 Promise 객체를 반환하고,  
 하나라도 실패하면 rejected 상태의 Promise 객체를 반환한다.  
-쉽게 말하자면 전달딘 Promise 객체들을 AND 연산한 것이라고 생각하면 된다.
+쉽게 말하자면 전달된 Promise 객체들을 AND 연산한 것이라고 생각하면 된다.
 
 ### Promise.race(iterable)
 마찬가지로 매개 변수에는 Promise 객체의 배열이 들어가게 된다.  
