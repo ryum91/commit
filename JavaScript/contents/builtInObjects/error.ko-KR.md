@@ -5,7 +5,7 @@ Error 객체는 프로그램이 실행 중에 발생되는 에러나, 오류에 
 ```js
 new Error([message]);
 ```
-### message
+### (String) message
 message는 에러에 대한 설명으로 아무런 값을 전달하지 않으면  
 Empty String ("")으로 초기화된다.
 
