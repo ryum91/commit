@@ -144,7 +144,7 @@ try {
 예를들어 try문 내에도 return이 존재하고, finally문 내에도 return이 존재하면  
 try - finally 차례로 수행하기 때문에 finally문 내에있는 return이 최종적으로 반환되는 것이다.
 
-## Promise
+## <img src="../image/es6.png" height="20" title="ECMAScript6"> Promise
 JavaScript의 대부분 작업들은 비동기 작업으로 이루어진다.  
 비동기 작업이란 함수 선언을 나열하였을때, 위에 호출 된 함수가 종료되기도 전에 밑에 선언된 함수가 호출되는 것이다.
 ```js
