@@ -1,4 +1,4 @@
-# Promise
+# <img src="../../image/es6.png" height="25" title="ECMAScript6"> Promise
 Promise 객체는 JavaScript에서 비동기를 제어하기 위해서  
 ES6에 추가된 내장 객체이다.
 
