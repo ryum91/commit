@@ -40,13 +40,21 @@ Promise는 어떤 연산을 수행한 뒤 특정 조건에 의해서 성공이�
 
 이러한 Promise는 대표적으로 세 가지의 상태 중에 하나의 상태를 가지게 된다.
 * pending (대기중) : Promise 객체가 생성된 직 후 초기 상태를 의미하며, 아직 성공이나 실패가 되지 않은 상태이다.
-* fulfilled (성공) : executor 함수 내에서 resolve 를 호출한 것을 의미하며, 연산이 성공 했다는 상태이다.
+* resolved (성공) : executor 함수 내에서 resolve 를 호출한 것을 의미하며, 연산이 성공 했다는 상태이다.
 * rejected (실패) : executor 함수 내에서 reject 를 호출한 것을 의미하며, 연산이 실패 했다는 상태이다.
 
-세 가지의 상태와는 별개로 pending 상태가 아닌, fulfilled 상태와, rejected 상태를 합쳐서 settled (처리됨) 상태라고도 불린다.
+세 가지의 상태와는 별개로 pending 상태가 아닌, resolved 상태와, rejected 상태를 합쳐서 settled (처리됨) 상태라고도 불린다.  
+또한 resolved 상태는 다른 말로 fulfilled 상태라고도 한다.
 
-Promise 에서는 이러한 상태를 자유롭게 제어가 가능하며,  
-함수와 함수 사이에 값을 주고 받는것 아주 편리하게 가능하다. 
+Promise의 이러한 상태는 한 번 settled 되면 변경되지 않는다.  
+즉 executor 함수 내에서 resolve와 reject를 둘 다 호출하게 되면, 먼저 호출된 상태로 해당 Promise의 상태가 변경된다.
+
+```js
+new Promise(function(resolve, reject) {
+	resolve();		// resolve를 호출하였기 때문에 해당 Promise는 resolved 상태로 변경된다.
+	reject();		// 이미 Promise가 settled 상태이기 때문에 의미가 없다.
+});
+```
 
 ## 속성
 
@@ -57,7 +65,7 @@ Promise 에서는 이러한 상태를 자유롭게 제어가 가능하며,
 
 ### Promise.all(iterable)
 매개 변수에는 Promise 객체의 배열이 들어가게 된다.  
-이 매개 변수에 전달된 Promise 객체들이 모두 성공이면 fulfilled 상태의 Promise 객체를 반환하고,  
+이 매개 변수에 전달된 Promise 객체들이 모두 성공이면 resolved 상태의 Promise 객체를 반환하고,  
 하나라도 실패하면 rejected 상태의 Promise 객체를 반환한다.  
 쉽게 말하자면 전달된 Promise 객체들을 AND 연산한 것이라고 생각하면 된다.
 
@@ -70,7 +78,7 @@ Promise 에서는 이러한 상태를 자유롭게 제어가 가능하며,
 무조건 reject 상태인 Promise 객체를 반환한다.  
 
 ### Promise.resolve(value)
-무조건 fulfilled 상태인 Promise 객체를 반환한다.
+무조건 resolved 상태인 Promise 객체를 반환한다.
 
 ## 프로토타입
 
@@ -93,23 +101,23 @@ prom.catch(
 );
 ```
 
-### Promise.prototype.then(onFulfilled, onRejected)
-then 프로토 타입 함수는 Promise가 fulfilled 상태일 때 수행 할 함수를 정의할 수 있다.  
+### Promise.prototype.then(onResolved, onRejected)
+then 프로토 타입 함수는 Promise가 resolved 상태일 때 수행 할 함수를 정의할 수 있다.  
 추가로 catch와 동일하게 reject 상태일 때 함수도 then에서 같이 정의가 가능하다.  
-fulfilled 상태도 마찬가지로 해당 Promise에서 resolve 하는 순간 전달된 값을 사용할 수 있다.
+resolved 상태도 마찬가지로 해당 Promise에서 resolve 하는 순간 전달된 값을 사용할 수 있다.
 
 ```js
 var prom = new Promise(
 	function(resolve, reject) {
-		resolve('prom is fulfilled!');
+		resolve('prom is resolved!');
 	}
 );
 
 prom.then(
-	function(value) {		// onFulfilled
-		console.log(value);	// prom is fulfilled!
+	function(value) {		// onResolved
+		console.log(value);	// prom is resolved!
 	},
-	function(reason) {		// onRejected (prom은 무조건 fulfilled 상태이기 때문에 호출되지 않음)
+	function(reason) {		// onRejected (prom은 무조건 resolved 상태이기 때문에 호출되지 않음)
 		console.log(reason);
 	}
 );
@@ -120,27 +128,27 @@ prom.then(
 ```js
 var prom = new Promise(
 	function(resolve, reject) {
-		resolve('prom is fulfilled!');
+		resolve('prom is resolved!');
 	}
 );
 
 prom
 	.then(
-		function(value) {		// onFulfilled
-			console.log(value);	// prom is fulfilled!
+		function(value) {		// onResolved
+			console.log(value);	// prom is resolved!
 		},
-		function(reason) {		// onRejected (prom은 무조건 fulfilled 상태이기 때문에 호출되지 않음)
+		function(reason) {		// onRejected (prom은 무조건 resolved 상태이기 때문에 호출되지 않음)
 			console.log(reason);
 		}
 	)
 	.then(
 		function(value) {
-			console.log('then'); // Promise의 상태는 계속해서 fulfilled 상태이기 때문에 계속 호출된다.
+			console.log('then'); // Promise의 상태는 계속해서 resolved 상태이기 때문에 계속 호출된다.
 		}
 	)
 	.catch(
 		function(reason) {
-			console.log('catch'); // Promise의 상태는 계속해서 fulfilled 상태이기 때문에 계속 호출되지 않는다.
+			console.log('catch'); // Promise의 상태는 계속해서 resolved 상태이기 때문에 호출되지 않는다.
 		}
 	);
 ```
