@@ -307,5 +307,5 @@ ECMAScript 명세에는 기본으로 내장되어있는 객체들이 존재한�
 ES6에서는 더 많은 내장 객체들이 추가 되었다.
 
 ---
-|[prev](./03-variable.ko-KR.md)|[content](./00-contents.ko-KR.md)|next|
+|[prev](./03-variable.ko-KR.md)|[content](./00-contents.ko-KR.md)|[next](./05-control.ko-KR.md)|
 |:--:|:--:|:--:|
