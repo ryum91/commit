@@ -194,4 +194,8 @@ ECMAScript 6 에는 Promise Pattern 개발이 가능한 내장 객체를 추가�
 따라서 Promise라는 새로운 문법이 생긴 것은 아니지만,  
 Promise 라는 내장 객체를 이용하여 기존의 콜백 지옥을 벗어날 수 있게 된 것이다.
 
-이 Promise 객체에 대해서는 [여기서](./builtInObjects/promise.ko-KR.md) 좀 더 자세하게 설명하겠다. 
+이 Promise 객체에 대해서는 [여기서](./builtInObjects/promise.ko-KR.md) 좀 더 자세하게 설명하겠다.
+
+---
+|[prev](./04-datastructure.ko-KR.md)|[content](./00-contents.ko-KR.md)|next|
+|:--:|:--:|:--:| 
