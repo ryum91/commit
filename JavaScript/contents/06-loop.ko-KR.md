@@ -20,9 +20,9 @@ JavaScript에서는 [조건문] 자체에 무조건 boolean 값이 들어갈 필
 그 특징을 이용하면 좀 더 간결한 for문을 작성할 수 있다.  
 다음 예제는 HTML문서 내에 존재하는 모든 div 태그를 뽑아서 순차적으로 수행하는 for문이다.
 ```js
-var divArray = document.getElementsByTagName('div');		// getElementsByTagName 함수는 태그 이름으로 DOM을 찾는 함수다.
-for( let i = 0, div; div = divArray[i]; i ++ ) {			// [조건문] 부분에서 div 변수에 값을 할당 후 조건으로 판단된다.
-	console.log(div);										// div가 순차적으로 출력된다.
+var divArray = document.getElementsByTagName('div');	// getElementsByTagName 함수는 태그 이름으로 DOM을 찾는 함수다.
+for( let i = 0, div; div = divArray[i]; i ++ ) {		// [조건문] 부분에서 div 변수에 값을 할당 후 조건으로 판단된다.
+	console.log(div);									// div가 순차적으로 출력된다.
 }
 ```
 
@@ -102,6 +102,67 @@ for( const i of arr ) {
 ```
 
 > iterator란 ES6에 새롭게 추가된 문법으로 추후에 다시 설명하겠다.
+
+## label
+label이란 모든 반복문에서 사용할 수 있는 문법으로  
+반복문의 시작 부분에 선언할 수 있다.  
+쉽게 말하자면 반복문 자체에 이름을 정해놓는 것이다.
+```js
+outer:				// outer란 label을 선언했다.
+for( let i = 1; i <= 10; i ++ ) {
+	...
+}
+```
+
+## continue
+continue란 모든 반복문에서 사용할 수 있는 문법으로  
+반복문 내의 문장에서 continue를 만나면 현재 진행중인 순서의 다음 순서로 바로 넘어간다.
+```js
+// 1 ~ 10까지 짝수만 더하는 반복문
+let result = 0;
+for( let i = 1; i <= 10; i ++ ) {
+	if( i % 2 ) {
+		continue;
+	}
+    result += i;
+}
+console.log(result);	// 30
+```
+
+label을 이용하면 이중 반복문일 때, 안쪽 반복문에서 바깥쪽 반복문의 순서를 넘길 수 도 있다.
+```js
+// 1 ~ 10까지 짝수만 더하는 반복문
+let result = 0;
+
+outer:
+for( let i = 1; i <= 10; i ++ ) {
+	if( i % 2 ) {
+		continue outer;
+	}
+    result += i;
+}
+console.log(result);	// 30 
+```
+
+## break
+break문 또한 모든 반복문에서 사용할 수 있는 문법으로,  
+반복문을 즉시 끝내고 싶을 때 사용한다.  
+
+마찬가지로 label과 함께 사용할 수 있어서  
+안쪽 반복문에서 바깥쪽 반복문을 종료할 수도 있다.
+```js
+// 1 ~ 10 까지 더하다가 30보다 크면 종료하는 반복문
+let result = 0;
+
+outer:
+for( let i = 1; i <= 10; i ++ ) {
+	if( result > 30 ) {
+		break outer;
+	}
+    result += i;
+}
+console.log(result);	// 36
+```
 
 ---
 |[prev](./05-control.ko-KR.md)|[content](./00-contents.ko-KR.md)|next|
