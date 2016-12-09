@@ -10,7 +10,7 @@ ES6에 해당하는 내용은 제목 앞부분에 <img src="./image/es6.png" hei
 3. [변수](https://github.com/ryum91/commit/blob/master/JavaScript/contents/03-variable.ko-KR.md)
 4. [데이터 구조](https://github.com/ryum91/commit/blob/master/JavaScript/contents/04-datastructure.ko-KR.md)
 5. [제어문](https://github.com/ryum91/commit/blob/master/JavaScript/contents/05-control.ko-KR.md)
-6. 반복문
+6. [반복문](https://github.com/ryum91/commit/blob/master/JavaScript/contents/06-loop.ko-KR.md)
 7. 함수
 8. 연산자
 

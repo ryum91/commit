@@ -5,7 +5,7 @@
 3. [변수](./03-variable.ko-KR.md)
 4. [데이터 구조](./04-datastructure.ko-KR.md)
 5. [제어문](./05-control.ko-KR.md)
-6. 반복문
+6. [반복문](./06-loop.ko-KR.md)
 7. 함수
 8. 연산자
 
