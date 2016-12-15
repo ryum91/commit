@@ -165,5 +165,5 @@ console.log(result);	// 36
 ```
 
 ---
-|[prev](./05-control.ko-KR.md)|[content](./00-contents.ko-KR.md)|next|
+|[prev](./05-control.ko-KR.md)|[content](./00-contents.ko-KR.md)|[next](./07-operator.ko-KR.md)|
 |:--:|:--:|:--:|
