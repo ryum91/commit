@@ -86,7 +86,7 @@ var [one, two, three] = arr;
 
 ## 논리 연산자
 논리 연산자는 피연산자로 사용된 값 중 하나를 반환한다.  
-보통 Boolean 값으로 논리연산자를 사용하기 때문에 반환되는 값 또한 대부분 Boolean 값이다.  
+보통 Boolean 값으로 논리연산자를 사용하기 때문에 반환되는 값 또한 Boolean 값이다.  
 그러나 만약 Boolean 값이 아닌 값을 함께 사용하였을 때는 꼭 Boolean이 반환되지 않을 수 있다. 
 
 |연산자|사용법|설명|
@@ -96,24 +96,127 @@ var [one, two, three] = arr;
 |부정(!)|!expr|expr이 true로 반환될 수 있으면 false를 반환한다.<br>그 외에 경우에는 true를 반환한다.|
 
 ## 문자열 연산자
+문자열 연산자는 연결 연산자(+) 단 하나를 가지고 있다.  
+이는 두 문자열 값을 연결하고, 합쳐진 새로운 문자열을 반환한다.
+```js
+var tmp1 = 'abcd';
+var tmp2 = 'efgh';
+
+console.log(tmp1 + tmp2);	// abcdefgh
+```
 
 ## 삼항 연산자
+삼항 연산자는 JavaScript에서 세 개의 항을 사용하는 유일한 연산자이다.
+```js
+조건 ? 값1 : 값2
+```
+
+먼저 조건을 Boolean 값으로 판단한 뒤,  
+true이면 '값1' 을 반환,  
+false이면 '값2' 을 반환한다.
+
+```js
+var tmp = 1 > 2 ? 't' : 'f';
+
+console.log(tmp);		// f
+```
 
 ## 콤마 연산자
+콤마 연산자는 두 피연산자를 비교하고, 마지막 피연산자의 값을 반환한다.  
+이 연산자는 주로 for 반복문 안에서 복수의 변수들을 선언할때 사용한다.
+```js
+for( var i = 0, j = 9; i <= j; i++, j-- ) {
+	...
+}
+```
+
+하지만 for문 안에서 사용되는 콤마 연산자는 선언만 하는 경우이다.  
+콤마 연산자의 반환값을 사용하지는 않는다.
+
+다음은 콤마 연산자의 반환값을 사용하는 경우이다.
+```js
+var tmp1;
+var tmp2;
+
+console.log( (tmp1 = 10, tmp2 = 20) );		// 20
+```
+
+이런식으로 콤마 연산자를 어떤 변수나, 함수에 대입하는 경우에는  
+마지막 피연산자의 값을 반환한다.
 
 ## 단항 연산자
+단항 연산자는 오직 하나의 피연산자를 가지고 연산하는 연산자이다.  
 
 ### delete
+delete 연산자는 객체의 특정 프로퍼티를 삭제할때 사용되는 연산자이다.
+```js
+var obj = {a:1, b:2, c:3, d:4};
+
+delete obj.a;
+
+console.log(obj);	// {b:2, c:3, d:4}
+```
+
+delete 연산자의 자체 반환 값은 실제 삭제 가능 여부에 따라 Boolean 값이 반환된다.  
+만약 내장 객체에 정의된 프로퍼티를 지우고자 할 때는 삭제가 불가능해 `false` 값이 반환된다.
 
 ### typeof
+typeof 연산자는 피연산자의 타입을 나타내는 문자열을 반환한다.  
+```js
+var myFun = new Function("5 + 2");
+var shape = "round";
+var size = 1;
+var today = new Date();
+
+console.log(typeof myFun);	// function
+console.log(typeof shape);	// string
+console.log(typeof size);	// number
+console.log(typeof today);	// object
+console.log(typeof true);	// boolean
+```
 
 ### void
+void 연산자는 반환값이 무조건 `undefined` 인 연산자이다.  
+```js
+void (expression);
+```
+
+대표적으로 void가 사용되어지는 곳은 html에서 아무 일도 안하는 하이퍼링크를 생성할 때 많이 사용된다.
+```html
+<a href="javascript:void(0)">Click here to do nothing</a>
+```
+이 경우에는 void의 반환값이 undefined 이기 때문에 아무런 동작을 하지 않는 하이퍼링크가 만들어졌다.
 
 ## 관계 연산자
+관계 연산자는 피연산자들을 연산자에 따라 비교하여  
+Boolean 값을 반환하는 연산자이다.
 
 ### in
+in 연산자는 객체에 특정 프로퍼티가 존재하는지 여부를 확인한다.  
+존재하면 true, 존재하지 않으면 false 를 반환한다.
+
+```js
+var obj = {a:1, b:2, c:3};
+
+console.log( 'a' in obj );	// true
+console.log( 'e' in obj );	// false
+```
+
+좌측 피연산자는 확인하고자 하는 프로퍼티의 명을 입력하고,  
+우측 피연산자는 확인하고자 하는 대상 객체를 입력한다.
 
 ### instanceof
+instanceof 연산자는 객체가 명시된 객체형과 일치하는지 확인한다.  
+일치하면 true, 일치하지 않으면 false 를 반환한다.
+
+```js
+var theDay = new Date();
+
+console.log( theDay instanceof Date );	// true
+```
+
+좌측 피연산자는 확인하고자 하는 대상 객체를 입력하고,  
+우측 피연산자는 확인하고자 하는 객체형을 입력한다.
 
 ## 그룹 연산자
 
