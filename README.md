@@ -6,4 +6,4 @@ Repository 이름은 제 두뇌에 **Commit** 한다는 의미로 작성하였�
 
 ## Contents
 * [Java8](./java8/README.md)
-* [JavaScript](./JavaScript/README.md)
+* [JavaScript](./javascript/README.md)
