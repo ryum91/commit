@@ -36,7 +36,7 @@ if ( condition_1 ) {
 }
 ```
 조건에 들어가는 값에 대한 참/거짓을 판단하는 것은 전역 함수인 `Boolean()` 함수를 이용하는 것과 동일한 결과를 나타낸다.  
-자세한 내용은 [boolean](./builtInObjects/boolean.ko-KR.md)을 참조하면 된다.
+자세한 내용은 [boolean](./built-in-objects/boolean.ko-KR.md)을 참조하면 된다.
 
 추가로 JavaScript는 매우 자유로운 언어이기 때문에 조건문 안에서 변수에 값을 할당하는 것도 가능하다.  
 하지만 이 방법은 사용하지 않는 것이 좋다.  
@@ -100,7 +100,7 @@ throw new Error();
 ```
 
 그러나 throw가 가장 많이 사용되는 곳은 단연 에러나, 오류에 대한 처리 부분이다.  
-ECMAScript 내부에서도 에러가 발생되면 해당 부분에서 [Error](./builtInObjects/error.ko-KR.md) 객체를 생성해 throw하게 된다.
+ECMAScript 내부에서도 에러가 발생되면 해당 부분에서 [Error](./built-in-objects/error.ko-KR.md) 객체를 생성해 throw하게 된다.
 
 > 이처럼 throw는 에러나, 오류에 대한 처리로 사용하는 것이 제일 바람직하다.  
 > 그 이유는 throw를 단순히 값을 반환하는 용도로 return문 처럼 사용하게 되면  
@@ -194,7 +194,7 @@ ECMAScript 6 에는 `Promise Pattern` 개발이 가능한 내장 객체를 추�
 따라서 `Promise` 라는 새로운 문법이 생긴 것은 아니지만,  
 `Promise` 라는 내장 객체를 이용하여 기존의 콜백 지옥을 벗어날 수 있게 된 것이다.
 
-이 `Promise` 객체에 대해서는 [여기서](./builtInObjects/promise.ko-KR.md) 좀 더 자세하게 설명하겠다.
+이 `Promise` 객체에 대해서는 [여기서](./built-in-objects/promise.ko-KR.md) 좀 더 자세하게 설명하겠다.
 
 ---
 |[prev](./04-datastructure.ko-KR.md)|[content](./00-contents.ko-KR.md)|[next](./06-loop.ko-KR.md)|
