@@ -75,7 +75,7 @@ main(callback);
 ## arguments 객체
 함수 내에서는 특별한 객체인 **arguments** 라는 객체를 사용할 수 있다.  
 이는 함수의 매개 변수와 관련된 객체이다.  
-자세한 사항은 [여기서](./expressions/function-in-arguments.ko-KR.md) 설명하겠다.
+자세한 사항은 [여기서](./etc/function-in-arguments.ko-KR.md) 설명하겠다.
 
 ---
 |[prev](././07-operator.ko-KR.md)|[content](./00-contents.ko-KR.md)|next|

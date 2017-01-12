@@ -34,7 +34,7 @@ var three = arr[2];
 // 비구조 대입을 이용하여 배열을 변수에 대입
 var [one, two, three] = arr;
 ``` 
-자세한 사항은 [여기서](./expressions/destructuring-assignment.ko-KR.md) 설명하겠다.
+자세한 사항은 [여기서](./etc/destructuring-assignment.ko-KR.md) 설명하겠다.
 
 ## 비교 연산자
 비교 연산자는 피연산자들을 비교하고 비교에 따라 Boolean 값을 반환한다.  
