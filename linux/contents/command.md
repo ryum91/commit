@@ -15,6 +15,7 @@
 ## G
 
 ## H
+* [hostname](./command/hostname.ko-KR.md)
 
 ## I
 
@@ -37,7 +38,7 @@
 ## R
 
 ## S
-* [SCP](./command/scp.md)
+* [scp](./command/scp.ko-KR.md)
 
 ## T
 

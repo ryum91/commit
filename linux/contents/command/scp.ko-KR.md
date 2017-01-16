@@ -1,4 +1,6 @@
-# SCP (Secure Copy)
+# scp
+
+**scp** 는 **Secure Copy**의 약자로 서버간에 파일을 송수신 할때 사용하는 unix 계열의 utility 이다.
 
 ## 다른 서버로 보내기
 ```
