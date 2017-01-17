@@ -39,6 +39,17 @@ main(callback);
 
 이렇게 함수를 선언하는 곳은 global하게 선언도 가능하며,  
 함수 내에서 다른 함수를 선언하는 것도 가능하다.
+```js
+function add(x, y) {
+	function out(a) {
+		console.log(a);
+	}
+	
+	out(x);
+	out(y);
+	console.log(x + y);
+}
+```
 
 ## 함수 호출
 함수 호출시에는 함수 표현식과, 함수 선언식에 따라 호출 범위가 다르다.  
@@ -76,6 +87,54 @@ main(callback);
 함수 내에서는 특별한 객체인 **arguments** 라는 객체를 사용할 수 있다.  
 이는 함수의 매개 변수와 관련된 객체이다.  
 자세한 사항은 [여기서](./etc/function-in-arguments.ko-KR.md) 설명하겠다.
+
+## 함수의 Scope
+JavaScript 에서는 함수 또한 객체로 표현되므로 일종의 Scope가 존재한다.  
+결론 먼저 말하자면 **함수의 Scope는 해당 함수를 선언한 상위에서만 유효하다.**  
+다시말해 global에서 선언된 함수는 global 전체에서 유효하고,  
+특정 함수 내부에서 선언된 함수는 해당 함수 내부에서만 유효하다는 뜻이다.
+
+```js
+function add(x, y) {
+	function out(a) {
+		console.log(a);
+	}
+	
+	out(x);
+	out(y);
+	console.log(x + y);
+}
+
+add(3, 4);		// 3, 4, 7 출력
+out(6);			// out is not defined
+```
+
+## 함수의 Closure (클로저)
+바로 위에서 언급한 함수의 Scope 규칙이 제외대는 것도 존재한다.  
+부모 함수에서 반환 할 때 내부 함수 자체를 반환하는 것이다.  
+그렇게 되면 실제 외부 함수 바깥에서도 내부 함수를 호출하는 것과 동일한 기능을 할 수 있다.
+```js
+function add(x, y) {
+	function out(a) {
+		console.log(a);
+	}
+	
+	out(x);
+	out(y);
+	console.log(x + y);
+	
+	return out;				// out 함수 자체를 반환하였다.
+}
+
+var result = add(3, 4);		// 3, 4, 7 출력
+result(6);					// 6 출력
+```
+
+여기서 `add(3, 4);` 의 실행 결과를 result 라는 변수에 할당하였다.  
+그 결과 add 함수 내부에 존재하는 `out` 이라는 내부 함수가 반환되어  
+result에 할당 되었기 때문에 접근이 가능한 상태로 변경 된 것이다.
+
+이러한 result 변수에 할당된 함수 자체를 **클로저** 라고 말한다.
 
 ---
 |[prev](././07-operator.ko-KR.md)|[content](./00-contents.ko-KR.md)|next|
