@@ -88,6 +88,11 @@ function add(x, y) {
 이는 함수의 매개 변수와 관련된 객체이다.  
 자세한 사항은 [여기서](./etc/function-in-arguments.ko-KR.md) 설명하겠다.
 
+## this
+함수 내에서는 arguments와 비슷하게 특별한 객체가 하나 더 있다.  
+바로 `this` 라는 객체인데 `this` 는 함수 호출시 암묵적으로 같이 넘어오는 인자값 이라고 생각하면 된다.  
+자세한 사항은 다음장에서 설명하겠다.
+
 ## 함수의 Scope
 JavaScript 에서는 함수 또한 객체로 표현되므로 일종의 Scope가 존재한다.  
 결론 먼저 말하자면 **함수의 Scope는 해당 함수를 선언한 상위에서만 유효하다.**  
@@ -131,11 +136,13 @@ result(6);					// 6 출력
 ```
 
 여기서 `add(3, 4);` 의 실행 결과를 result 라는 변수에 할당하였다.  
-그 결과 add 함수 내부에 존재하는 `out` 이라는 내부 함수가 반환되어  
+그 결과 add 함수의 내부 함수인 `out` 이 반환되어  
 result에 할당 되었기 때문에 접근이 가능한 상태로 변경 된 것이다.
 
 이러한 result 변수에 할당된 함수 자체를 **클로저** 라고 말한다.
 
+좀 더 자세한 내용은 추후에 다시 설명하겠다.
+
 ---
-|[prev](././07-operator.ko-KR.md)|[content](./00-contents.ko-KR.md)|next|
+|[prev](././07-operator.ko-KR.md)|[content](./00-contents.ko-KR.md)|[next](./09-this.ko-KR.md)|
 |:--:|:--:|:--:|

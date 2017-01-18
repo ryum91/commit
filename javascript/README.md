@@ -13,6 +13,7 @@ ES6에 해당하는 내용은 제목 앞부분에 <img src="./image/es6.png" hei
 6. [반복문](./contents/06-loop.ko-KR.md)
 7. [연산자](./contents/07-operator.ko-KR.md)
 8. [함수](./contents/08-function.ko-KR.md)
+9. [this](./contents/09-this.ko-KR.md)
 
 ## Reference
 * [Mozilla Developer Network](https://developer.mozilla.org/ko/)
