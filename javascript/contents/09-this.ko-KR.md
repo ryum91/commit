@@ -10,3 +10,20 @@ JavaScript에서는 함수 호출 시 암묵적으로 전달되는 `this` 라는
 ## 객체의 프로퍼티 함수에서의 this
 객체의 프로퍼티가 함수일 경우 해당 함수에서의 `this`는  
 **해당 함수를 호출한 객체로 바인딩** 된다.
+
+```js
+var obj = {
+	func: function() {
+		console.log( obj === this );
+	}
+}
+
+obj.func();		// true
+```
+
+위 예제를 보면 obj 객체의 func 함수 내부에서  
+`obj === this` 로 같은지 여부를 검증한다.  
+그 결과, true 가 출력되었기 때문에 this 와 obj는 동일하다고 볼 수 있다.
+
+## 함수를 호출할 때의 this
+JavaScript에서 함수 호출 시 해당 함수 내에서의 `this` 는 전역 객체에 바인딩 된다.
