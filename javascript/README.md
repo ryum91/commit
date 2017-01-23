@@ -15,7 +15,8 @@ ES6에 해당하는 내용은 제목 앞부분에 <img src="./image/es6.png" hei
 6. [반복문](./contents/06-loop.ko-KR.md)
 7. [연산자](./contents/07-operator.ko-KR.md)
 8. [함수](./contents/08-function.ko-KR.md)
-9. [this](./contents/09-this.ko-KR.md)
+9. [객체](./contents/09-object.ko-KR.md)
+10. [this](./contents/10-this.ko-KR.md)
 
 ### Built in objects
 * [Boolean](./contents/built-in-objects/boolean.ko-KR.md)

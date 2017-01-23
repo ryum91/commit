@@ -144,5 +144,5 @@ result에 할당 되었기 때문에 접근이 가능한 상태로 변경 된 �
 좀 더 자세한 내용은 추후에 다시 설명하겠다.
 
 ---
-|[prev](././07-operator.ko-KR.md)|[content](./00-contents.ko-KR.md)|[next](./09-this.ko-KR.md)|
+|[prev](./07-operator.ko-KR.md)|[content](./00-contents.ko-KR.md)|[next](./09-object.ko-KR.md)|
 |:--:|:--:|:--:|

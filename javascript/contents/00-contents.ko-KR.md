@@ -9,7 +9,8 @@
 6. [반복문](./06-loop.ko-KR.md)
 7. [연산자](./07-operator.ko-KR.md)
 8. [함수](./08-function.ko-KR.md)
-9. [this](./09-this.ko-KR.md)
+9. [객체](./09-object.ko-KR.md)
+10. [this](./10-this.ko-KR.md)
 
 ## Built in objects
 * [Boolean](./built-in-objects/boolean.ko-KR.md)
