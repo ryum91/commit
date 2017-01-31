@@ -1,27 +1,32 @@
 # 객체
 
-## 객체 원형의 프로토타입 객체
-JavaScript에는 객체 원형별로 프로토타입 객체라는 특수한 객체가 존재한다.  
-프로토타입 객체 내에는 프로토타입 메소드들이 존재하며,  
-해당 객체 원형의 객체들은 이러한 프로토타입 메소드들을 사용할 수 있다.
+## 객체와 객체 원형
+JavaScript에는 객체와 객체 원형이 존재한다.  
 
-다음은 내장 객체 중 String 객체 원형에 존재하는 프로토타입 메소드이다.  
+## 객체 원형의 프로토타입 객체
+JavaScript의 객체 원형에는 프로토타입 객체라는 특수한 객체가 존재하며,  
+해당 객체 원형을 이용해 생성한 객체는 프로토타입 객체를 사용할 수 있다.  
+
+다음은 내장 객체 중 String 객체 원형에 존재하는 프로토타입 객체이다.  
 ```js
 console.log(String.prototype);
 // anchor, big, blink ... 등등
 ```
 
-이러한 프로토타입 객체에는 자신만의 프로토타입 메소드를 추가할 수도 있다.
+이러한 프로토타입 객체에는 자신만의 프로퍼티를 추가할 수도 있다.
 ```js
-Object.prototype.haha = function() {
-	console.log('hahaha');
+Object.prototype.func = function() {
+	console.log('Object Prototype Custom Function');
 }
 
+Object.prototype.const = 'Object Prototype Custom Const';
+
 var obj = {};
-obj.haha();		// hahaha
+obj.func();					// Object Prototype Custom Function
+console.log(obj.const;);	// Object Ptototype Custom Const
 ```
 
-프로토타입 객체에는 프로토타입 메소드 뿐만 아니라, 특수한 프로퍼티가 존재한다.  
+프로토타입 객체에는 특수한 프로퍼티가 존재한다.  
 바로 `__proto__` 라는 프로퍼티이다.  
 이는 **해당 객체 원형의 상위 객체 원형에 존재하는 프로토타입 객체를 가리키는 프로퍼티**이다.  
 먼저 JavaScript 각각의 객체 원형에는 상위 객체 원형이 존재한다.  
