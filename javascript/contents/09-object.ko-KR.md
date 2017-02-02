@@ -22,7 +22,7 @@ var my = new Person('ryum');
 
 ## 객체 원형
 JavaScript 객체들은 각각 객체 원형이 존재한다.  
-이런 객체 원형들을 JavaScript 에서는 Prototype (프로토타입) 으로 구분한다.
+이런 객체 원형들을 JavaScript 에서는 **Prototype (프로토타입)** 으로 구분한다.
 
 따라서 모든 객체들은 프로토타입이 존재하고,  
 객체들은 자신이 가지고 있는 프로토타입 내에 존재하는 프로퍼티나, 메소드들을 사용할 수 있다.
@@ -65,6 +65,15 @@ var obj = {};
 obj.func();					// Object Prototype Custom Function
 console.log(obj.const;);	// Object Ptototype Custom Const
 ```
+
+그렇다면 각각의 객체들은 어떠한 방식으로 이런 프로토타입 객체를 가지고 있을까  
+그것은 바로 객체 내의 숨겨진 `__proto__` 프로퍼티를 이용한다.
+
+
+
+## 프로토타입 체이닝
+JavaScript 객체는 **상속** 이 존재한다고 했었다.  
+이러한 JavaScript 객체 상속은 **프로토타입 체이닝** 이라는 것을 통해 동작한다.
 
 프로토타입 객체에는 특수한 프로퍼티가 존재한다.  
 바로 `__proto__` 라는 프로퍼티이다.  
