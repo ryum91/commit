@@ -84,13 +84,15 @@ console.dir(Person);		// Person 함수 자체를 출력
 
 ### prototype 프로퍼티
 먼저 위에 실행 결과 중 **1번**에 `prototype` 프로퍼티가 존재하는 것을 볼 수있다.  
-이 프로퍼티는 해당 객체의 원형 객체를 가리킨다.  
-즉, 자기 자신 객체의 원형을 가리키는 것이므로 자기 자신이라고 보면 된다.
+이 프로퍼티는 함수가 선언되는 순간 생성되며  
+생성된 함수와, 함수 자체가 서로를 가리키게 된다.  
+이때 함수 입장에서 생성된 prototype 객체를 가리키는 것이 `prototype` 프로퍼티이며,  
+생성된 prototype 객체 입장에선 함수 자체를 가리키는 것이 `constructor` 프로퍼티이다.
 
-단, 이 `prototype` 프로퍼티는 해당 함수를 `new` 를 이용해 생성자 함수로 사용했을때 의미가 있다.  
+단, 이 `prototype` 프로퍼티는 해당 함수를 `new` 를 이용해 생성자 함수로 사용했을때 의미가 있다. *(예외도 있음)*  
 만약 함수를 `new` 를 이용해 생성자 함수로 사용하게 되면  
-함수의 `prototype` 프로퍼티가 새로 생성된 객체와 연결되는 것이다.  
-이때 연결되는 객체에 사용되는 프로퍼티는 `__proto__` 이다.
+함수 선언시 생성된 `prototype` 프로퍼티가 새로 생성된 객체와 연결되는 것이다.  
+이때 새로 생성된 객체 입장에서 사용되는 프로퍼티는 `__proto__` 이다.
 ```js
 var my = new Person('ryum');
 
@@ -100,44 +102,30 @@ console.log( my.__proto__ === Person.prototype );		// true
 따라서 Person.prototype 에 임의로 프로퍼티나, 메소드를 추가하면  
 Person 을 생성자 함수로 생성한 객체에서 사용할 수 있는 것이다.
 
-### __proto__ 프로퍼티
+### \_\_proto\__ 프로퍼티
 다시 위로 올라가서, 2번과, 3번 둘다 `__proto__` 프로퍼티가 존재하는 것을 볼 수있다.  
-먼저 2번은 **Person 객체의 상위 객체 prototype** 이라고 보면된다.  
+먼저 `prototype` 프로퍼티 내부에 존재하는 2번은 **Person 객체의 상위 객체 prototype** 이다.  
 여기서는 Person 의 상위 객체를 따로 지정하지 않았으므로, Object 의 prototype이 된다.
 ```js
 console.log( Person.prototype.__proto__ === Object.prototype );		// true
 ```
+이렇게 상위 객체가 따로 지정이 되지 않는 이상 무조건 `Object` 객체가 상위 객체가 된다.
 
-> Object  
+> **Object**  
 > 모든 객체의 최상위 객체는 Object 이다.
 
-다음으로 3번에 있는 `__proto__` 프로퍼티는  
-마찬가지로 상위 객체의 prototype 이긴 하나,  
-자기 자신의 상위 객체가 아니라, 함수 자체의 상위 객체이다.  
-JavaScript 에서의 함수의 상위 객체는 `Function` 객체이다.  
-따라서 3번의 __proto__ 는 Function.prototype 이다.
+다음으로 바깥쪽에 있는 3번 `__proto__` 프로퍼티는  
+JavaScript에서 함수 또한 객체로 표현된다는 것을 이해하면 알 수 있을 것이다.  
+위에서 설명했던것으로, 함수라는 객체를 생성할 때 함수 객체가 연결되는 prototype 객체이다.
+
+JavaScript 에서의 이러한 함수 자체를 생성할 때 사용하는 객체는 `Function` 객체로 지정되어있다.  
+따라서 3번의 `__proto__` 는 Function.prototype 이다.
 ```js
 console.log( Person.__proto__ === Function.prototype );		// true
 ```
 
-> Function
+> **Function**  
 > 모든 함수의 상위 객체는 Function 이다.
-
-
-
-또한 객체 원형의 프로토타입 객체는 **체이닝**을 지원한다.  
-체이닝이란 자바나, C++에 존재하는 상속과 비슷한 개념으로,  
-자신의 상위 객체에 존재하는 prototype 도 같이 사용할 수 있
-
-### 생성자 함수 동작 방식
-new 연산자로 함수를 생성자로써 호출하면 다음과 같은 순서로 동작한다.
-
-1. 빈 객체 생성 및 this 바인딩  
-new 로 함수를 생성자로 호출하면 내부 구현이 실행되기 전 빈 객체가 생성된다.  
-바로 이 객체가 생성자 함수가 새로 생성하는 객체이며, 생성자 함수 내의 this로 바인딩된다.  
-하지만 엄밀히 말하면 빈 객체는 아니다. 이렇게 생성된 객체는 자신의 prototype 프로퍼티가 가리키는 객체를  
-자신의 프로토타입 객체로 설정한다.
-
 
 ---
 |[prev](./08-function.ko-KR.md)|[content](./00-contents.ko-KR.md)|[next](./10-this.ko-KR.md)|
