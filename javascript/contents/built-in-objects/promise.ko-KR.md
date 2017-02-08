@@ -17,9 +17,9 @@ function executor(resolve, reject) {
 	...
 }
 ```
-두 개의 매개변수는 resolve, reject로 둘 다 함수이다.  
-이는 executor 함수 내에서 연산이 성공하였을 때는 resolve를 호출,  
-연산이 실패하였을 때는 reject를 호출하는 방식으로 사용한다.
+두 개의 매개변수는 `resolve`, `reject`로 둘 다 함수이다.  
+이는 executor 함수 내에서 연산이 성공하였을 때는 `resolve` 를 호출,  
+연산이 실패하였을 때는 `reject` 를 호출하는 방식으로 사용한다.
 ```js
 new Promise(function(resolve, reject) {
 	var result = 연산의 수행 조건;
@@ -33,6 +33,9 @@ new Promise(function(resolve, reject) {
 	}
 });
 ```
+
+또한 `resolve` 함수와 `reject` 함수를 호출 시 매개변수 한 개를 넘겨 보낼 수 있다.  
+이 매개변수는 이후에 나오는 Promise 상태에 따라 수행되는 작업에서 넘겨 받을 수 있다.
 
 ## 설명
 Promise는 어떤 연산을 수행한 뒤 특정 조건에 의해서 성공이나, 실패하였을 때  
@@ -104,7 +107,7 @@ prom.catch(
 ### Promise.prototype.then(onResolved, onRejected)
 then 프로토 타입 함수는 Promise가 resolved 상태일 때 수행 할 함수를 정의할 수 있다.  
 추가로 catch와 동일하게 reject 상태일 때 함수도 then에서 같이 정의가 가능하다.  
-resolved 상태도 마찬가지로 해당 Promise에서 resolve 하는 순간 전달된 값을 사용할 수 있다.
+resolved 상태도 마찬가지로 해당 Promise에서 resolve 하는 순간 전달된 값을 사용할 수 있다.  
 
 ```js
 var prom = new Promise(
@@ -123,33 +126,67 @@ prom.then(
 );
 ```
 
-위에 언급한 then과, catch 프로토 타입은 둘다 반환 타입 자체가 Promise 객체이다.  
-따라서 **체이닝**이 가능하다.
+## Chaining
+Promise 객체의 프로토타입에 존재하는 메소드들의 반환 타입은 모두 Promise 객체이다.  
+따라서 Chaining(체이닝)을 할 수가 있다.
+  
+그러나 Promise 객체가 생성되는 시점에서 수행되는 조건과,  
+한 번 상태가 결정된 이후 수행되는 조건이 조금 다르다.
+
+먼저 앞서 말했듯이 Promise 객체가 생성되는 시점에서는 Promise의 상태에 따라서 수행되는 메소드가 달라진다.  
+resolved 상태인 경우에는 then 메소드를,
+rejected 상태인 경우에는 catch 메소드를 수행한다.
+
+그러나 그 이후로 then이나, catch안에서는 약간 다르다.  
+만약 메소드 내에서 정상 동작하여 정상적인 반환(return)이 되었으면 이어진 then 메소드를 수행하고,  
+예외가 발생되어 Exception이 throw 되어지면 뒤에 이어진 catch문이 수행된다.
+
 ```js
 var prom = new Promise(
 	function(resolve, reject) {
-		resolve('prom is resolved!');
+		resolve();		// resolved 상태가 되었다.
 	}
 );
 
 prom
+	// 현재 prom 은 resolved 상태이기 때문에 첫번째 then이 수행된다.
 	.then(
-		function(value) {		// onResolved
-			console.log(value);	// prom is resolved!
-		},
-		function(reason) {		// onRejected (prom은 무조건 resolved 상태이기 때문에 호출되지 않음)
-			console.log(reason);
+		function() {
+			console.log('then1');
 		}
 	)
+	// 첫번째 then 내에서 정상적인 반환이 이루어졌으므로, 두번째 then이 수행된다.
 	.then(
-		function(value) {
-			console.log('then'); // Promise의 상태는 계속해서 resolved 상태이기 때문에 계속 호출된다.
+		function() {
+			console.log('then2');
+			throw 'exception';
 		}
 	)
+	// 두번째 then 내에서 Exception이 발생되어 던져졌으므로 세번째 then은 수행되지 않는다.
+	.then(
+		function() {
+			console.log('then3');
+		}
+	)
+	// 상위 Promise(두번째 then)에서 Exception이 발생되어 던져졌으므로 catch가 수행된다.
 	.catch(
-		function(reason) {
-			console.log('catch'); // Promise의 상태는 계속해서 resolved 상태이기 때문에 호출되지 않는다.
+		function() {
+			console.log('catch1');
+		}
+	)
+	// 첫번째 catch에서 정상적인 반환이 이루어졌으므로 두번째 catch는 수행되지 않는다.
+	.catch(
+		function() {
+			console.log('catch2');
+		}
+	)
+	// 상위 Promise(첫번째 catch)에서 정상적인 반환이 이루어졌으므로 네번째 then이 수행된다.
+	.then(
+		function() {
+			console.log('then4');
 		}
 	);
+	
+	// 수행 결과 : then1 - then2 - catch1 - then4
 ```
 
