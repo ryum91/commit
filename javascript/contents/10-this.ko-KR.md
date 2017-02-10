@@ -100,6 +100,40 @@ var obj = {
 obj.func1();
 ```
 
+## 생성자 함수를 호출할 때의 this
+생성자 함수를 호출할 때의 `this` 는 일반 함수를 호출할 때의 this와는 다르다.  
+생성자 함수를 호출하면 함수 코드를 수행하기 전 빈 객체가 생성된다.
+
+이렇게 생성된 빈 객체가 생성자 함수의 호출 결과로 반환이 되며,  
+생성자 함수 내에서 `this` 로 바인딩이 되어진다.
+  
+하지만 엄연히 말하자면 완전한 빈 객체는 아니고  
+해당 생성자 함수의 prototype 객체가 바인딩 된 객체이다.
+
+## call과 apply 메서드를 이용한 명시적인 this 바인딩
+함수 호출시 `this` 에 대해서 강제적으로 다른 객체로 바인딩을 할 수 있는 방법이 존재한다.  
+이는 Function 의 prototype 인 call 과 apply 메소드를 이용해 할 수 있다.
+  
+`Function.prototype.apply(thisArg, argArray);`  
+`Function.prototype.call(thisArg, arg...);`
+
+apply 와 call 둘다 첫번째 매개변수에는 해당 함수 내에서 this 로 바인딩 될 값을 넘겨준다.  
+그리고 apply 의 두번째 매개변수에는 해당 함수 호출시 전달될 매개변수를 **배열** 로 넘겨준다.  
+call의 두번째 이상 매개변수에는 해당 함수 호출시 전달될 매개변수를 나열해서 넘겨주면 된다.
+```js
+function Person(name, age, gender) {
+	this.name = name;
+	this.age = age;
+	this.gender = gender;
+}
+
+var applyTest = {};
+Person.apply(applyTest, ['applyTest', 30, 'man']);
+
+var callTest = {};
+Person.call(callTest, 'callTest', 20, 'woman');
+```
+
 ---
 |[prev](./09-object.ko-KR.md)|[content](./00-contents.ko-KR.md)|next|
 |:--:|:--:|:--:|
