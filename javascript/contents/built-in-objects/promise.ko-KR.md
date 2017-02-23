@@ -190,3 +190,41 @@ prom
 	// 수행 결과 : then1 - then2 - catch1 - then4
 ```
 
+추가로 `then` 이나, `catch` 메소드 내에서 반환값을 새로운 Promise 객체로 반환할 수도 있다.
+그럼 그 이후로 체이닝은 반환하는 Promise 객체의 상태에 따라 수행된다.
+
+```js
+var prom = new Promise(
+	function(resolve, reject) {
+		resolve();		// resolved 상태가 되었다.
+	}
+);
+
+prom
+	// 현재 prom 은 resolved 상태이기 때문에 첫번째 then이 수행된다.
+	.then(
+		function() {
+			console.log('then1');
+			return new Promise(
+				function(resolve, reject) {
+					reject();
+				}
+			)
+		}
+	)
+	// 첫번째 then 의 반환이 reject 된 Promise 를 반환하였기 때문에 두번째 then은 수행되지 않는다.
+	.then(
+		function() {
+			console.log('then2');
+		}
+	)
+	// 첫번째 then 의 반환이 reject 된 Promise 를 반환하였기 때문에 첫번째 then이 수행된다.
+	.catch(
+		function() {
+			console.log('catch1');
+		}
+	);
+	
+	// 수행 결과 : then1 - catch1
+```
+
