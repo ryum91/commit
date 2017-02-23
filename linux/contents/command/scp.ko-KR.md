@@ -32,7 +32,7 @@ scp [User]@[Host]:[SourceFile] [TargetDirectory]|[TargetFile]
 scp -P [Port] [User]@[Host]:[SourceFile] [TargetDirectory]|[TargetFile]
 
 # 디렉토리 복사
-scp -R [User]@[Host]:[SourceDirectory] [TargetDirectory]
+scp -r [User]@[Host]:[SourceDirectory] [TargetDirectory]
 ```
 
 ### Port
@@ -52,4 +52,5 @@ scp -R [User]@[Host]:[SourceDirectory] [TargetDirectory]
 
 TargetDirectory 생략시 현재 디렉토리에 저장되며,  
 TargetFile 생략시 SourceFile과 동일한 파일명으로 저장된다.  
-둘 다 입력도 가능하지만, 둘 중 하나는 무조건 필수로 입력해야한다.
+둘 다 입력도 가능하지만, 둘 중 하나는 무조건 필수로 입력해야한다.  
+또한 디렉토리 명령어에 존재하는 `r` 은 무조건 소문자여야 한다.
