@@ -51,7 +51,7 @@
 그때 사용되는 기호는 두 가지가 존재한다. `*` 과, `_`
 이 두가지 기호 중 **한 가지를 이용해 한 개를 앞뒤로 붙일 경우 기울임**, **두 개를 앞뒤로 붙일 경우 굵게**, **세 개를 앞뒤로 붙일 경우 기울임 + 굵게**가 표현된다.
 
-추가로 `~` 기호 두 개를 이용해 취소선을 할 수 있으며, ｀ 기호를 이용해 글씨에 블록 강조를 할 수 있다.
+추가로 `~` 기호 두 개를 이용해 취소선을 할 수 있으며, ｀ 기호를 이용해 글씨에 블록 강조를 할 수 있다. ｀ 기호로 글씨에 블록을 감싸는 것은 Inline Block Code 라고도 표현한다.
 
 #### 예제
 ```
@@ -272,6 +272,41 @@ HTML 태그를 이용해야한다.
 #### 예제 결과
 ![대체 텍스트1](images/chrome.png "Chrome icon")  
 ![대체 텍스트2](images/chrome1.png "Chrome icon")
+
+### 테이블
+간단한 테이블을 Markdown 으로 만들 수 있다. Cell과 Cell의 구분은 `|` 으로 구분하고, 테이블의 Header 와 Body 를 `-` 로 구분하여 테이블 정의를 한다.
+그리고 Header 와 Body 를 구분할 때 Column 단위로 좌측 정렬, 중앙 정렬, 우측 정렬을 정의할 수 있다.
+그러나, 만약 테이블의 셀 병합은 Markdown 에서 지원을 하지 않기 때문에, HTML 태그를 이용해야한다.
+
+#### 예제
+```
+|Left Header|Center Header|Right Header|
+|:----------|:-----------:|-----------:|
+|1번|2번|3번|
+```
+
+#### 예제 결과
+|Left Header|Center Header|Right Header|
+|:----------|:-----------:|-----------:|
+|1번|2번|3번|
+|abcdefghijklmnopqrstuvwxyz|abcdefghijklmnopqrstuvwxyz|abcdefghijklmnopqrstuvwxyz|
+
+### 체크 박스
+체크 박스를 이용해 이슈의 코멘트나, 해야할 일을 표시할 수 있다. 그러나 이 문법의 경우에는 GitHub 에서 커스터마이징 한 것 이므로, GitHub를 제외한 Markdown을 지원하는 다른 곳에서는 지원이 안 될 수 있다.
+
+#### 예제
+```
+- [x] Checked1
+- [x] Checked2
+- [ ] UnChecked1
+- [ ] UnChecked2
+```
+
+#### 예제 결과
+- [x] Checked1
+- [x] Checked2
+- [ ] UnChecked1
+- [ ] UnChecked2
 
 ## Reference
 * [kalkin7 - Markdown](http://blog.kalkin7.com/2014/02/10/lets-write-using-markdown/)
