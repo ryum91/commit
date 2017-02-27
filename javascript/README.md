@@ -19,6 +19,7 @@ ES6에 해당하는 내용은 제목 앞부분에 <img src="./image/es6.png" hei
 10. [this](./contents/10-this.ko-KR.md)
 
 ### Built in objects
+* [Array](./contents/built-in-objects/array.ko-KR.md)
 * [Boolean](./contents/built-in-objects/boolean.ko-KR.md)
 * [Error](./contents/built-in-objects/error.ko-KR.md)
 * [Promise](./contents/built-in-objects/promise.ko-KR.md)
