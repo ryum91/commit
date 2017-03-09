@@ -5,6 +5,7 @@ Java 에서 객체를 만드는 방법은 `new` 키워드를 이용해서 만든
 
 ```java
 public class Person {
+
 	private String name;
 	private int age;
 	private String favoriteColor;
@@ -19,23 +20,29 @@ public class Person {
 		...
 	}
 
-	// getter, setter ...
+	...
+	
 }
 ```
 
 이런 경우 사용할 수 있는 디자인 패턴이 바로 Builder Pattern 이다. Builder Pattern 은 객체의 생성을 전담하고, 불필요한 생성자의 선언을 막아준다.
 
-Builder Pattern 의 사용 방법은 Builder Pattern을 적용할 대상 클래스 내에 내장 클래스를 하나 선언해 준다. 그 클래스가 바로 `Builder 클래스` 이다.
-또한 대상 클래스의 생성자는 `private` 으로 선언하며, 생성자 매개변수에는 오로지 `Builder 클래스` 하나만 입력받게 선언한다.
+Builder Pattern 의 사용 방법은 Builder Pattern 을 적용할 대상 클래스 내에 내장 클래스를 하나 선언해 준다. 그 클래스가 바로 **Builder 클래스** 이다.
+또한 대상 클래스의 생성자는 `private` 으로 선언하며, 생성자 매개 변수에는 오로지 Builder 클래스 하나만 입력받게 선언한다.
 
 ```java
 public class Person {
+
+	...
+	
+	// private constructor
 	private Person(PersonBuilder builder) {
 	
 	}
 
 	...
 	
+	// inner builder class
 	public static class PersonBuilder {
 	
 	}
@@ -43,11 +50,12 @@ public class Person {
 
 ```
 
-Builder 클래스 내에서는 대상 클래스의 매개변수와 동일하게 선언 후 Setter 메소드만 선언한다.
+Builder 클래스의 멤버 변수는 대상 클래스의 멤버 변수와 동일하게 선언 후 Setter 메소드만 선언한다.
 그러나 일반적인 Setter 메소드가 아닌, 반환 타입이 Builder 클래스 자기 자신인 Setter 메소드를 선언하는 것이다.
 
 ```java
 public static class PersonBuilder {
+
 	private String name;
 	private int age;
 	private String favoriteColor;
@@ -73,11 +81,18 @@ public static class PersonBuilder {
 
 ```java
 public class Person {
-	public Person(PersonBuilder builder) {
+
+	...
+
+	// private constructor	
+	private Person(PersonBuilder builder) {
 		this.name = builder.name;
 		this.age = builder.age;
 		...
 	}
+	
+	...
+	
 }
 ```
 
@@ -92,3 +107,17 @@ public static class PersonBuilder {
 	}
 }
 ```
+
+사용하는 방법또한 간단하다. 대상 클래스의 객체를 만들고자 할 때 직접적인 대상 클래스의 객체 대신에,
+Builder 클래스의 객체를 생성 후, 필요한 멤버 변수의 setter 메소드를 계속해서 수행 후 마지막에 build 메소드만 수행해주면 되는 것이다.
+이러한 방식을 **체이닝(Chaining)** 이라고도 말한다.
+
+```java
+Person person = new PersonBuilder()
+					.setName("ryum")
+					.setAge(27)
+					.setFavoriteColor("black")
+					.build();
+``` 
+
+여기까지가 Builder Pattern 에서의 가장 기초적인 Builder Class 설계이자, 사용 방법이였다.
