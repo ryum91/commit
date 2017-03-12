@@ -1,4 +1,4 @@
-package chap05;
+package content05;
 
 public class FunctionalProgramming {
 

@@ -1,4 +1,4 @@
-package chap02;
+package content02;
 
 public interface InterfaceTest2 {
 	

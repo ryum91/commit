@@ -1,4 +1,4 @@
-package chap03;
+package content03;
 
 public class FreeVariable {
 

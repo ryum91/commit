@@ -1,4 +1,4 @@
-package chap02;
+package content02;
 
 public interface InterfaceTest3 {
 	// 해당 인터페이스는 기존에 만든 ChildClass 에서 implements 를 할 수 없다.
