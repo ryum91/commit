@@ -62,18 +62,75 @@ Predicate<Integer> f5 = (p) -> p % 2 == 0;
 Predicate<Integer> f6 = p -> p % 2 == 0;
 ```
 
+*[소스코드 - LambdaExpression.java](../src/content06/LambdaExpression.java)*
+
 ## 익명 클래스와 람다식의 차이점
-내부적으로 큰 차이점은 this 키워드가 의미하는 바이다.
-익명 클래스에서 this는 익명 클래스 자신을 가리킨다.
-반면, 람다식에서 this는 람다식을 감싸고 있는 클래스를 지칭하게 된다.
 
-또한 람다식과 익명 클래스의 다른 차이는 컴파일하는 방식의 차이가 있다.
-자바 컴파일러는 람다식을 클래스 내의 private 메소드로 컴파일한다.
-이때, 자바7에서 추가된 invokeDynamic을 사용하여 변환한다.
+###this
+클래스 내부에서 선언되는 익명 클래스의 this 는 익명클래스 자기 자신을 가리킨다.
+반면, 람다식에서 this 는 람다식을 감싸고 있는 클래스를 기리키게 된다.
 
-결론적으로 성능 면에서 익명 클래스보다 유리하게 동작한다고 한다.
-그 이유는 해당 메소드가 호출되기 전까지 초기화를 진행하지 않기 때문이다.
-이를 통해 결국 메모리를 다소 절약하는 효과를 가져온다.
+따라서 만약 람다식 선언시 해당 변수가 정적 변수라면 동적 영역의 this는 당연히 참조를 할 수 없다.
+하지만 익명 클래스로 정적 변수 선언시 this는 익명 클래스 자기 자신이기 때문에 상관이 없다.
 
-하지만 성능 차이는 대부분의 개발 및 운영 환경에서 미미한 수준으로 나타나므로
-성능보다는 개발 속도의 향상과 읽기 좋은 코드를 작성할 수 있다는 점에서 장점이 뚜렷하다.
+```java
+// 익명 클래스의 this
+Consumer<String> f1 = new Consumer<String>() {
+	@Override
+	public void accept(String p) {
+		System.out.println(this.getClass().getName());	// content06.LambdaExpression2$1
+	}
+};
+
+// 람다식의 this
+Consumer<String> f2 = (String p) -> {
+	System.out.println(this.getClass().getName());		// content06.LambdaExpression2
+};
+
+// 정적 변수 람다식의 this
+static Consumer<String> f3 = (String p) -> {
+	System.out.println(this);							// Compile Error
+};
+```
+
+*[소스코드 - LambdaExpression2.java](../src/content06/LambdaExpression2.java)*
+
+### 컴파일
+익명 클래스와 람다식은 컴파일 방식의 차이가 존재한다. 앞서 작성한 예제 코드의 컴파일 된 binary 파일(class 파일) 위치에 들어가 보기만 해도 다르다는 것을 알 수 있다.
+
+먼저 익명 클래스는 클래스 내부에서 또다른 클래스가 선언된 것 이기 때문에 컴파일 시점에는 별도의 class 파일이 생성된 것을 볼 수 있다.
+
+![컴파일 된 class 파일](../image/lambda-expression-compile.png)
+
+그러나 람다식으로 선언한 변수는 별도 클래스로 분리되지 않았다. 어떠한 방식으로 컴파일이 되었는지 보려면 `LambdaExpression2.class` 파일을 디컴파일 해보면 알 수 있다.
+
+```java
+public class LambdaExpression2 {
+    Consumer<String> f1;
+    Consumer<String> f2;
+    static Consumer<String> f3 = p -> {
+    };
+
+    public LambdaExpression2() {
+        this.f1 = new /* Unavailable Anonymous Inner Class!! */;
+        this.f2 = p -> {
+            System.out.println(this.getClass().getName());
+        };
+    }
+
+    public static void main(String[] args) {
+        LambdaExpression2 test = new LambdaExpression2();
+        test.f1.accept(null);
+        test.f2.accept(null);
+    }
+}
+```
+
+보면 람다식으로 선언된 변수들은 선언은 입력한대로 수행되지만, 초기화는 생성자 내부에서 수행되는 것을 볼 수 있다. 
+이때 수행되는 방식은 Java7 에서 추가된 [invokeDynamic](https://docs.oracle.com/javase/7/docs/api/java/lang/invoke/package-summary.html) 을 사용하여 변환한다고 한다.
+
+결론적으로 성능 면에서 람다식이 익명 클래스보다 유리하게 동작한다고 한다. 이를 통해 람다식을 사용하면 결국 메모리를 다소 절약하는 효과를 가져온다.
+하지만 성능 차이는 대부분의 개발 및 운영 환경에서 미미한 수준으로 나타나므로 성능보다는 개발 속도의 향상과 읽기 좋은 코드를 작성할 수 있다는 점에서 장점이 뚜렷하다.
+
+*[소스코드 - LambdaExpression2.class.decompile.txt](../src/content06/LambdaExpression2.class.decompile.txt)*  
+*[소스코드 - LambdaExpression2$1.class.decompile.txt](../src/content06/LambdaExpression2$1.class.decompile.txt)*

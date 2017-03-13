@@ -12,6 +12,7 @@ Java8이 처음 릴리즈가 된 지 어느덧 2년이 넘었고,
 3. [Free Variable](./contents/03-free-variable.ko-KR.md)
 4. [Functional Programing](./contents/04-functional-programming.ko-KR.md)
 5. [Functional Interface](./contents/05-functional-interface.ko-KR.md)
+6. [Lambda Expression](./contents/06-lambda-expression.ko-KR.md)
 
 ## Reference
 * [Medium - Jooyung Han](https://medium.com/@jooyunghan)

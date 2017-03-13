@@ -1,0 +1,18 @@
+/*
+ * Decompiled with CFR 0_118.
+ */
+package content06;
+
+import java.io.PrintStream;
+import java.util.function.Consumer;
+
+class LambdaExpression2
+implements Consumer<String> {
+    LambdaExpression2() {
+    }
+
+    @Override
+    public void accept(String p) {
+        System.out.println(this.getClass().getName());
+    }
+}
