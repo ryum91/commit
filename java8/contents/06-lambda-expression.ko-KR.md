@@ -14,6 +14,8 @@
 * 람다식을 너무 남발하여 사용하게되면 오히려 코드를 이해하기 어려울 수도 있다.
 
 ## Lambda Expression in Java
+[![LambdaExpression.java](../image/source-icon.png) LambdaExpression.java](../src/content06/LambdaExpression.java)
+
 먼저 Java 에서의 람다식에서 가장 중요한 점은 람다식에서 사용되는 인터페이스는 무조건 @FunctionalInterface 이어야 한다는 것이다. FunctionalInterface가 아니면 람다식 문법을 사용할 수 없다.
 
 그럼 Consumer 인터페이스를 이용해 람다식을 사용하지 않고, 입력된 값을 출력하는 함수를 하나 작성해 보자.
@@ -62,11 +64,12 @@ Predicate<Integer> f5 = (p) -> p % 2 == 0;
 Predicate<Integer> f6 = p -> p % 2 == 0;
 ```
 
-*[소스코드 - LambdaExpression.java](../src/content06/LambdaExpression.java)*
-
 ## 익명 클래스와 람다식의 차이점
 
 ###this
+
+[![LambdaExpression2.java](../image/source-icon.png) LambdaExpression2.java](../src/content06/LambdaExpression2.java)
+
 클래스 내부에서 선언되는 익명 클래스의 this 는 익명클래스 자기 자신을 가리킨다.
 반면, 람다식에서 this 는 람다식을 감싸고 있는 클래스를 기리키게 된다.
 
@@ -93,9 +96,11 @@ static Consumer<String> f3 = (String p) -> {
 };
 ```
 
-*[소스코드 - LambdaExpression2.java](../src/content06/LambdaExpression2.java)*
-
 ### 컴파일
+
+[![LambdaExpression2.class.decompile.txt](../image/source-icon.png) LambdaExpression2.class.decompile.txt](../src/content06/LambdaExpression2.class.decompile.txt)  
+[![LambdaExpression2$1.class.decompile.txt](../image/source-icon.png) LambdaExpression2$1.class.decompile.txt](../src/content06/LambdaExpression2$1.class.decompile.txt)
+
 익명 클래스와 람다식은 컴파일 방식의 차이가 존재한다. 앞서 작성한 예제 코드의 컴파일 된 binary 파일(class 파일) 위치에 들어가 보기만 해도 다르다는 것을 알 수 있다.
 
 먼저 익명 클래스는 클래스 내부에서 또다른 클래스가 선언된 것 이기 때문에 컴파일 시점에는 별도의 class 파일이 생성된 것을 볼 수 있다.
@@ -131,6 +136,3 @@ public class LambdaExpression2 {
 
 결론적으로 성능 면에서 람다식이 익명 클래스보다 유리하게 동작한다고 한다. 이를 통해 람다식을 사용하면 결국 메모리를 다소 절약하는 효과를 가져온다.
 하지만 성능 차이는 대부분의 개발 및 운영 환경에서 미미한 수준으로 나타나므로 성능보다는 개발 속도의 향상과 읽기 좋은 코드를 작성할 수 있다는 점에서 장점이 뚜렷하다.
-
-*[소스코드 - LambdaExpression2.class.decompile.txt](../src/content06/LambdaExpression2.class.decompile.txt)*  
-*[소스코드 - LambdaExpression2$1.class.decompile.txt](../src/content06/LambdaExpression2$1.class.decompile.txt)*
