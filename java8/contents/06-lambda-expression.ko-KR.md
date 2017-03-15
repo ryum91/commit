@@ -66,7 +66,7 @@ Predicate<Integer> f6 = p -> p % 2 == 0;
 
 ## 익명 클래스와 람다식의 차이점
 
-###this
+### this
 
 [![LambdaExpression2.java](../image/source-icon.png) LambdaExpression2.java](../src/content06/LambdaExpression2.java)
 
