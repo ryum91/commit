@@ -1,3 +1,5 @@
+[SourceIcon]: ../../image/source-icon.png
+
 # Decorator Pattern
 
 ## 정의
@@ -5,17 +7,16 @@ Decorator 이름 그대로 객체를 장식하는 디자인 패턴이다.
 **원래 클래스의 코드는 전혀 바꾸지 않고도 객체에 새로운 기능을 부여**한다는 점이 큰 특징이다.
 
 ## 예제 #1
-
 `Cookie` 라는 인터페이스를 사용하여 쿠키를 만들고자 한다.
 
-[![Cookie.java](../../image/source-icon.png) Cookie.java](../src/decorator/Cookie.java)
+[![SourceIcon] Cookie.java](../src/decorator/Cookie.java)
 ```java
 public interface Cookie {
 	String getName();
 }
 ```
 
-[![Main.java](../../image/source-icon.png) Main.java](../src/decorator/Main.java)
+[![SourceIcon] Main.java](../src/decorator/Main.java)
 ```java
 Cookie cookie = new Cookie() {
 	@Override
@@ -37,7 +38,7 @@ Cookie cookie = new Cookie() {
 즉, 여기서 Topping 이라는 Decorator Class 는 곧 Cookie 와 동일한 타입이어야 하고,
 아까 선언한 `Cookie` 라는 인터페이스를 구현하여 선언한다.
 
-[![Topping.java](../../image/source-icon.png) Topping.java](../src/decorator/Topping.java)
+[![SourceIcon] Topping.java](../src/decorator/Topping.java)
 ```java
 public abstract class Topping implements Cookie {
 	protected Cookie cookie;
@@ -50,7 +51,7 @@ public abstract class Topping implements Cookie {
 
 토핑은 우유 토핑과, 초콜렛 토핑 두가지가 존재한다고 할 때 생성한 Decorator Class 이다.
 
-[![MilkTopping.java](../../image/source-icon.png) MilkTopping.java](../src/decorator/MilkTopping.java)
+[![SourceIcon] MilkTopping.java](../src/decorator/MilkTopping.java)
 ```java
 public class MilkTopping extends Topping {
 
@@ -66,7 +67,7 @@ public class MilkTopping extends Topping {
 }
 ```
 
-[![ChocolateTopping.java](../../image/source-icon.png) ChocolateTopping.java](../src/decorator/ChocolateTopping.java)
+[![SourceIcon] ChocolateTopping.java](../src/decorator/ChocolateTopping.java)
 ```java
 public class ChocolateTopping extends Topping {
 
@@ -84,7 +85,7 @@ public class ChocolateTopping extends Topping {
 
 이렇게 생성한 두 개의 Decorator Class 을 아까 만든 쿠키 객체를 이용해 토핑을 추가해보자.
 
-[![Main.java](../../image/source-icon.png) Main.java](../src/decorator/Main.java)
+[![SourceIcon] Main.java](../src/decorator/Main.java)
 ```java
 cookie = new MilkTopping(cookie);
 System.out.println(cookie.getName());	// 우유 + 쿠키
