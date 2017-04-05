@@ -10,6 +10,3 @@
 * [Effective Java](./effective-java/README.md)
 * [Java8](./java8/README.md)
 * [Markdown](./markdown/README.md)
-* [Guava](./guava/README.md)
-* [React](./react/README.md)
-* [Spring](./spring/README.md)
