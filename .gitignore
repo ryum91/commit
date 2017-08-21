@@ -22,3 +22,6 @@ local.properties
 .loadpath
 *.md.html
 .springBeans
+
+node_modules/
+node_modules/**
